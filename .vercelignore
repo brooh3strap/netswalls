@@ -1,0 +1,2 @@
+# Use only notify.js on Vercel; notify.php is for cPanel (avoids path conflict)
+api/notify.php
